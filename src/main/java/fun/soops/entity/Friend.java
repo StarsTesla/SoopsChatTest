@@ -11,6 +11,15 @@ public class Friend {
         this.userId2 = userId2;
     }
 
+    @Override
+    public String toString() {
+        return "Friend{" +
+                "id='" + id + '\'' +
+                ", userId1='" + userId1 + '\'' +
+                ", userId2='" + userId2 + '\'' +
+                '}';
+    }
+
     public String getId() {
         return id;
     }
