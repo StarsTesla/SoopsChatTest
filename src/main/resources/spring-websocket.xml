@@ -69,6 +69,13 @@
         <!--        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>-->
     </bean>
 
+    <!-- 注解扫描 告诉Spring注解位置 -->
+    <context:component-scan base-package="fun.soops"></context:component-scan>
+    <!-- 事务管理 -->
+    <context:component-scan base-package="fun.soops" use-default-filters="true">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
 
     <!-- websocket -->
     <bean id="textHandler" class="fun.soops.socket.TextHandler"/>
