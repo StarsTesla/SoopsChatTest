@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--debug 打印logback内部日志信息-->
+<configuration scan="true" scan-period="60 seconds" debug="true">
+    <property name="log.path"
+              value="/Users/stars/Downloads/重要文档/websocketTest01/log"/>
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss,SSS} |-[%-5p] in %logger.%M[line-%L] -%m%n"/>
+
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <encoder>
+            <!--            日志格式-->
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="File2" class="ch.qos.logback.core.FileAppender">
+        <file>${log.path}/log02.log</file>
+        <encoder>
+            <!--            日志格式-->
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="File1" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <file>${log.path}/log01.log</file>
+        <encoder>
+            <!--            日志格式-->
+            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/log-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+
+                <MaxFileSize>8kb</MaxFileSize>
+                <maxHistory>1</maxHistory> <!-- 保留前1天 -->
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!--    root的level 是第一满足标准，filter里是第二满足标准-->
+    <root level="trace">
+        <appender-ref ref="CONSOLE"/>
+        <!--        <appender-ref ref="File1" />-->
+        <!--        <appender-ref ref="File2" />-->
+        <!--        -->
+    </root>
+</configuration>

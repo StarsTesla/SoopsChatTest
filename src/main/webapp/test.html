@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./js/jquery.js"></script>
+</head>
+<body>
+<button onclick="openSocket" value="open">open</button>
+<button onclick="sendMessage" value="send">send</button>
+<button onclick="closeSocket" value="close">close</button>
+
+<script>
+
+
+    var url = 'ws://localhost:8080/hello';  //配置文件中配的path有关
+    var socket = new WebSocket(url);
+
+    function openSocket() {
+
+    }
+
+    function sendMessage() {
+        socket.send("浏览器发的信息|stars");
+        console.log("sendMessage");
+    }
+
+    function closeSocket() {
+        socket.close();
+    }
+
+    socket.onopen = function () {
+        console.log("open...");
+
+        //socket.send("start talk...")
+    }
+    socket.onmessage = function (e) {
+        console.log("服务器发来：" + e.data);
+        document.write("" + e.data + "<br/>");
+    }
+    socket.onclose = function () {
+        console.log("close...");
+    }
+
+
+</script>
+</body>
+</html>
