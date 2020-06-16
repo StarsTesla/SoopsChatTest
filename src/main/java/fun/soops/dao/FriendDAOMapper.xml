@@ -4,35 +4,44 @@
 
 <mapper namespace="fun.soops.dao.FriendDAO">
 
-    <!-- TODO-->
+    <!-- 通过好友ID获取好友记录-->
     <select id="getFriendById" resultType="Friend">
         select * from t_friend where id=#{id}
     </select>
+    <!-- 通过好友ID获取好友记录-->
 
+    <!-- 通过2个用户ID来获取好友-->
     <select id="getFriendBy2UsersId" resultType="Friend">
         select * from t_friend where userId1=#{userId1} and userId2=#{userId2}
     </select>
+    <!-- 通过2个用户ID来获取好友-->
 
-
+    <!-- 通过2个用户名来获取好友-->
     <select id="getFriendBy2Usersname" resultType="Friend">
         select * from t_friend
         where userId1=(select id from t_user where username=#{username1})
         and userId2=(select id from t_user where username=#{username2})
     </select>
+    <!-- 通过2个用户ID来获取好友-->
 
+    <!-- 添加好友关系-->
     <insert id="insertFriend" parameterType="Friend">
         insert into t_friend
         values(#{id}, #{userId1}, #{userId2})
     </insert>
+    <!-- 添加好友关系-->
 
+    <!-- 删除好友关系-->
     <delete id="deleteFriend" parameterType="Friend">
         delete from t_friend where id=#{id}
     </delete>
+    <!-- 删除好友关系-->
 
+    <!-- 通过用户ID来获取他所有的好友-->
     <select id="getFriends" parameterType="User" resultType="Friend">
         select * from t_friend
         where userId1=#{id}
     </select>
-
+    <!-- 通过用户ID来获取他所有的好友-->
 
 </mapper>

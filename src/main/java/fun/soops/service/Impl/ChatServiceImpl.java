@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Author:Stars
+ * Description:聊天
+ */
+
 @Service
 public class ChatServiceImpl implements ChatService {
 
@@ -25,6 +30,9 @@ public class ChatServiceImpl implements ChatService {
     @Autowired
     FriendDAO friendDAO;
 
+
+    //通过两个用户 来获取之间所有聊天记录
+    //这里查的是user1 -》 user2 的聊天记录
     public List<Message> getHistoryBy2User(User user1, User user2) {
 
         Friend friend = friendDAO.getFriendBy2UsersId(user1.getId(), user2.getId());
@@ -38,6 +46,7 @@ public class ChatServiceImpl implements ChatService {
         return messages;
     }
 
+    //保存最新的消息记录
     public void saveHistory(List<Message> messages) {
         List<ChatHistory> histyList = new ArrayList<ChatHistory>();
         for (Message message : messages) {
@@ -57,5 +66,5 @@ public class ChatServiceImpl implements ChatService {
      */
 
 
-    //TODO
+    //TODO 还差分页啥的
 }

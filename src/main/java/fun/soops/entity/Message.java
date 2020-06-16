@@ -6,6 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 /**
+ * Author:Stars
+ * Description:消息实体类
+ * <p>
  * Message 是用来做临时化存储的
  * 当用户关闭聊天窗口或者查看聊天记录时或者积累到一定量（20条）
  * 就将其存到ChatHistory里去

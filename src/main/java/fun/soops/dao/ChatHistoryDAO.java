@@ -9,6 +9,5 @@ import java.util.List;
 @Repository
 public interface ChatHistoryDAO {
     List<ChatHistory> getHistoryByFriendId(@Param("friendId") String friendId);
-
     void saveHistory(List<ChatHistory> history);
 }

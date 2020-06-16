@@ -1,5 +1,10 @@
 package fun.soops.entity;
 
+/**
+ * Author:Stars
+ * Description:朋友实体类
+ */
+
 public class Friend {
     private String id;
     private String userId1;

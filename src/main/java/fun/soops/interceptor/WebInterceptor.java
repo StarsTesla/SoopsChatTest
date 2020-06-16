@@ -7,11 +7,19 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Author:Stars
+ * Description:网页拦截器，添加跨域头部，这样ajax就能访问了
+ */
+
+
 @Component
 public class WebInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        //添加跨域头部
+        //TODO 判断登录啥的
+
+        //添加跨域头部，允许所有的域访问
         response.addHeader("Access-Control-Allow-Origin", "*");
         response.addHeader("Access-Control-Allow-Methods", "*");
         response.addHeader("Access-Control-Max-Age", "3600");
@@ -29,5 +37,5 @@ public class WebInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
     }
-    //TODO
+
 }

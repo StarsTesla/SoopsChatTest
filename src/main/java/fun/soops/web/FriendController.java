@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * Author:Stars
+ * Description:处理好友的接口
+ */
+
+
 @RestController
 @RequestMapping("/api/friend")
-@CrossOrigin("*")
+@CrossOrigin("*")  //允许跨域
 public class FriendController {
 
     @Autowired
@@ -23,7 +29,9 @@ public class FriendController {
     private FriendService friendService;
     private Logger log = LoggerFactory.getLogger(FriendController.class);
 
-    // TODO 需要用户模块支持
+    // TODO 将接口返回都改成Json，用map和jackson
+
+
     @GetMapping("/getFriends")
     public List<User> getFriends(HttpSession session) {
         log.info("查询所有好友 ");

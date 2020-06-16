@@ -1,9 +1,9 @@
 package fun.soops.entity;
 
-import fun.soops.web.Message;
-
-import java.util.Date;
-
+/**
+ * Author:Stars
+ * Description:聊天记录实体类
+ */
 public class ChatHistory {
     private String id;
     private String friendId;
@@ -12,12 +12,19 @@ public class ChatHistory {
     public ChatHistory() {
     }
 
-    ;
-
     public ChatHistory(String id, String friendId, Message message) {
         this.id = id;
         this.friendId = friendId;
         this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatHistory{" +
+                "id='" + id + '\'' +
+                ", friendId='" + friendId + '\'' +
+                ", message=" + message +
+                '}';
     }
 
     public String getId() {

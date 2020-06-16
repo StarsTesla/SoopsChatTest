@@ -16,9 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Author:Stars
+ * Description: 处理聊天的接口
+ */
+
+
 @RestController
-@RequestMapping(value = "/api/chat", produces = "application/json; charset=utf-8")
-@CrossOrigin("*")
+@RequestMapping(value = "/api/chat")
+@CrossOrigin("*")  //允许跨域
 public class ChatController {
     private Logger log = LoggerFactory.getLogger(ChatController.class);
 
@@ -41,6 +47,7 @@ public class ChatController {
         return params;
     }
 
+    //添加聊天窗口，但目前前端控制发给谁，暂时没用
     @CrossOrigin("*")
     @PostMapping("/addChatWindow")
     public Map<String, String> addChatWindow(String friendName, HttpSession session) {
@@ -57,7 +64,8 @@ public class ChatController {
 
     }
 
-
+    //获取聊天记录
+    //TODO 分页版的和ajax版的还没写
     @GetMapping("/getChatHistory")
     public List<Message> getChatHistory(String friendName, HttpSession session) {
         String username = (String) session.getAttribute("username");
