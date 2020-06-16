@@ -1,9 +1,9 @@
 package fun.soops.socket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fun.soops.service.ChatService;
 import fun.soops.service.UserService;
-import fun.soops.web.Message;
-import org.apache.commons.lang3.StringUtils;
+import fun.soops.entity.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
 
 public class TextHandler extends TextWebSocketHandler {
 
@@ -26,9 +26,17 @@ public class TextHandler extends TextWebSocketHandler {
     private final Logger log = LoggerFactory.getLogger(TextHandler.class);
     public static ObjectMapper mapper = new ObjectMapper();
     public static List<Message> messages = new ArrayList<Message>();
+    //final Lock writeLock;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    ChatService chatService;
+
+    public TextHandler() {
+
+    }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -67,7 +75,8 @@ public class TextHandler extends TextWebSocketHandler {
         } else {
             log.info("好友不在线................");
         }
-        if (messages.size() > 10) {
+        if (messages.size() > 30) {
+            saveMessagesToHistory();
             //存入数据库
             //TODO
         }
@@ -83,10 +92,25 @@ public class TextHandler extends TextWebSocketHandler {
         String userId = (String) attributes.get("userId");
         clients.remove(userId);
         log.info("Websock with " + attributes.get("username") + " has closed");
-        System.out.println("Closed.............");
+        System.out.println("Closed and save.............");
+
+        saveMessagesToHistory();
 
         //存入数据库
         //TODO
+    }
+
+    public void saveMessagesToHistory() {
+        chatService.saveHistory(messages);
+        messages.clear();
+//        this.writeLock.lock();
+//
+//        try {
+//
+//        }
+//        finally{
+//            this.writeLock.unlock();
+//        }
     }
 
 

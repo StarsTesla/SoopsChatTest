@@ -5,15 +5,15 @@
 <mapper namespace="fun.soops.dao.UserDAO">
 
     <resultMap id="user_query" type="User">
-        <id column="id" property="id"></id>
-        <result column="username" property="username"></result>
-        <result column="password" property="password"></result>
-        <result column="birth" property="birth"></result>
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="birth" property="birth"/>
 
         <association property="avatar" javaType="File">
-            <id column="avatar_id" property="id"></id>
-            <result column="realName" property="realName"></result>
-            <result column="type" property="type"></result>
+            <id column="avatar_id" property="id"/>
+            <result column="realName" property="realName"/>
+            <result column="type" property="type"/>
         </association>
     </resultMap>
 

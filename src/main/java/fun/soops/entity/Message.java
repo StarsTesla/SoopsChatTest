@@ -1,4 +1,4 @@
-package fun.soops.web;
+package fun.soops.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,13 +20,12 @@ public class Message {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdOn;
-
     private String type;
+
 
     public Message() {
     }
 
-    ;
 
     public Message(String content, String fromUser, String toUser, String type, Date createdOn) {
         this.content = content;
@@ -34,6 +33,17 @@ public class Message {
         this.toUser = toUser;
         this.type = type;
         this.createdOn = createdOn;
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "content='" + content + '\'' +
+                ", fromUser='" + fromUser + '\'' +
+                ", toUser='" + toUser + '\'' +
+                ", createdOn=" + createdOn +
+                ", type='" + type + '\'' +
+                '}';
     }
 
     public String getContent() {
