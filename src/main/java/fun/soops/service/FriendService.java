@@ -19,6 +19,6 @@ public interface FriendService {
 
     String deleteFriend(String userId1, String userId2);
 
-    //  List<User> getFriends(String userId);
+    List<User> getFriends(String userId);
 
 }

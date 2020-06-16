@@ -31,7 +31,7 @@
 
     <select id="getFriends" parameterType="User" resultType="Friend">
         select * from t_friend
-        where userId1=#{id} OR userId2=#{id}
+        where userId1=#{id}
     </select>
 
 

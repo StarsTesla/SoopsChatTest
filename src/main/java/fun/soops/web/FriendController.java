@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/friend")
+@CrossOrigin("*")
 public class FriendController {
 
     @Autowired
@@ -21,22 +23,23 @@ public class FriendController {
     private FriendService friendService;
     private Logger log = LoggerFactory.getLogger(FriendController.class);
 
-    //TODO 需要用户模块支持
-//    @GetMapping("/getFriends")
-//    public List<User> getFriends(String userId)
-//    {
-//        log.info("查询所有好友 ");
-//        List<User> friends = friendService.getFriends(userId);
-//        return friends;
-//    }
+    // TODO 需要用户模块支持
+    @GetMapping("/getFriends")
+    public List<User> getFriends(HttpSession session) {
+        log.info("查询所有好友 ");
+        String userId = (String) session.getAttribute("userId");
+        log.info("UserID:" + userId);
+        List<User> friends = friendService.getFriends(userId);
+        return friends;
+
+    }
 
 
     @PostMapping(value = "/addFriend")
     public String addFriend(String userId1, String userId2) {
-        Friend friend1 = friendService.getFriendBy2UsersId(userId1, userId2);
-        Friend friend2 = friendService.getFriendBy2UsersId(userId2, userId1);
+        Friend friend = friendService.getFriendBy2UsersId(userId1, userId2);
 
-        if (friend1 != null || friend2 != null) {
+        if (friend != null) {
             log.warn("已经存在好友关系");
             return "{msg:已经存在好友关系,code:400}";
         }
@@ -50,16 +53,14 @@ public class FriendController {
 
     @PostMapping("/deleteFriend")
     public String deleteFriend(String userId1, String userId2) {
-        Friend friend1 = friendService.getFriendBy2UsersId(userId1, userId2);
-        Friend friend2 = friendService.getFriendBy2UsersId(userId2, userId1);
+        Friend friend = friendService.getFriendBy2UsersId(userId1, userId2);
 
-        if (friend1 == null && friend2 == null) {
+        if (friend == null) {
             log.warn("不存在好友关系");
             return "{msg:不存在好友关系,code:400}";
         }
         String friendId = friendService.deleteFriend(userId1, userId2);
         return "{msg:删除成功,code:200,friendId:" + friendId + "}";
-
     }
 
 

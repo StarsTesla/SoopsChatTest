@@ -1,6 +1,7 @@
 package fun.soops.service.Impl;
 
 import fun.soops.dao.FriendDAO;
+import fun.soops.dao.UserDAO;
 import fun.soops.entity.Friend;
 import fun.soops.entity.User;
 import fun.soops.service.FriendService;
@@ -23,6 +24,10 @@ public class FriendServiceImpl implements FriendService {
     @Qualifier("friendDAO")
     private FriendDAO friendDAO;
 
+    @Autowired
+    @Qualifier("userDAO")
+    private UserDAO userDAO;
+
     public Friend getFriendById(String friendId) {
         return friendDAO.getFriendById(friendId);
     }
@@ -37,46 +42,37 @@ public class FriendServiceImpl implements FriendService {
 
     public String insertFriend(String userId1, String userId2) {
 
-        String uuid = UUID.randomUUID().toString().replace("-", "");
-        Friend newFriend = new Friend(uuid, userId1, userId2);
-        friendDAO.insertFriend(newFriend);
-        return uuid;
+        String uuid1 = UUID.randomUUID().toString().replace("-", "");
+        Friend newFriend = new Friend(uuid1, userId1, userId2);
+        String uuid2 = UUID.randomUUID().toString().replace("-", "");
+        Friend newFriendFriend = new Friend(uuid2, userId2, userId1);
+        friendDAO.insertFriend(newFriendFriend);
+        return uuid1;
     }
 
 
     public String deleteFriend(String userId1, String userId2) {
         Friend friend = friendDAO.getFriendBy2UsersId(userId1, userId2);
-        if (friend == null) {
-            friend = friendDAO.getFriendBy2UsersId(userId2, userId1);
-        }
+        Friend friendFriend = friendDAO.getFriendBy2UsersId(userId2, userId1);
         friendDAO.deleteFriend(friend);
+        friendDAO.deleteFriend(friendFriend);
         return friend.getId();
     }
-//
-//    public List<User> getFriends(String userId){
-//        //TODO 需要User模块到支持
-//
-//        User user = userDAO.getUserById(userId);
-//        List<Friend> friends = friendDAO.getFriends(user);
-//        List<User> users = new ArrayList<User>();
-//        for(Friend friend: friends)
-//        {
-//            if(friend.getUserId1().equals(user.getId()))
-//            {
-//                User user2 = userDAO.getUserById(friend.getUserId2());
-//                users.add(user2);
-//            }
-//            else{
-//                User user1 = userDAO.getUserById(friend.getUserId1());
-//                users.add(user1);
-//            }
-//        }
-//
-//        return users;
-//
-//    }
-//
-//
+
+    public List<User> getFriends(String userId) {
+        //TODO 需要User模块到支持
+
+        User user = userDAO.getUserById(userId);
+        List<Friend> friends = friendDAO.getFriends(user);
+        List<User> users = new ArrayList<User>();
+        for (Friend friend : friends) {
+            User mate = userDAO.getUserById(friend.getUserId2());
+            users.add(mate);
+        }
+
+        return users;
+
+    }
 
 
     //TODO
