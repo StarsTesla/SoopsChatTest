@@ -42,6 +42,7 @@ public class TestCore {
         System.out.println(friend);
     }
 
+
     @Test
     public void insertFriend() {
         String id1 = "003";

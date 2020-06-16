@@ -5,5 +5,10 @@
 <mapper namespace="fun.soops.dao.UserDAO">
 
     <!-- TODO-->
-
+    <select id="getById" resultType="User">
+        select * from t_user where id = #{id}
+    </select>
+    <select id="login" resultType="User">
+        select * from t_user where username = #{username} and password = #{password}
+    </select>
 </mapper>
