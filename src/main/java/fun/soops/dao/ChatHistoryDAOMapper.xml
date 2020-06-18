@@ -4,6 +4,34 @@
 
 <mapper namespace="fun.soops.dao.ChatHistoryDAO">
 
-    <!--TODO-->
+    <!-- 聊天记录查询 -->
+    <resultMap id="history_query" type="ChatHistory">
+        <id column="id" property="id"/>
+        <result column="friendId" property="friendId"/>
+        <association property="message" javaType="Message">
+            <result column="content" property="content"/>
+            <result column="fromUser" property="fromUser"/>
+            <result column="toUser" property="toUser"/>
+            <result column="createdOn" property="createdOn"/>
+            <result column="type" property="type"/>
+        </association>
+    </resultMap>
+
+    <select id="getHistoryByFriendId" resultMap="history_query">
+        select * from t_chatHistory where friendId=#{friendId}
+    </select>
+    <!-- 聊天记录查询 -->
+
+    <!-- 聊天记录保存 -->
+    <insert id="saveHistory" parameterType="java.util.List">
+        insert into t_chatHistory values
+        <!-- (null,x,x,x,x),(null,x,x,x,x),(null,x,x,x,x)....-->
+        <foreach collection="list" item="chat" open="" close="" separator=",">
+            (#{chat.id}, #{chat.friendId}, #{chat.message.content},
+            #{chat.message.fromUser},#{chat.message.toUser},#{chat.message.createdOn},
+            #{chat.message.type})
+        </foreach>
+    </insert>
+    <!-- 聊天记录保存 -->
 
 </mapper>

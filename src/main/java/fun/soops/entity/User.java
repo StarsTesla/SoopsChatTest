@@ -1,15 +1,30 @@
 package fun.soops.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class User {
     private String id;
     private String username;
+
+    @JsonIgnore
     private String password;
     private Date birth;
+    //File类的关系属性
     private File avatar;
 
-    public User(){}
+    //TODO
+
+    public User() {};
+
+    public User(String id, String username, String password, Date birth) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.birth = birth;
+    }
+
     public User(String id, String username, String password, Date birth, File avatar) {
         this.id = id;
         this.username = username;
@@ -18,12 +33,11 @@ public class User {
         this.avatar = avatar;
     }
 
-    public User(String id, String username, String password, Date birth) {
-        this.id = id;
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.birth = birth;
     }
+
 
     @Override
     public String toString() {
@@ -75,5 +89,7 @@ public class User {
     public void setAvatar(File avatar) {
         this.avatar = avatar;
     }
-//TODO
+
 }
+
+

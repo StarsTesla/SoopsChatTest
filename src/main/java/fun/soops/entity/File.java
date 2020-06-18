@@ -1,14 +1,43 @@
 package fun.soops.entity;
 
+/**
+ * Author:Stars
+ * Description:文件实体类
+ */
+
 public class File {
     private String id; //uuid
     private String realName; //123.jpg
     private String type; // jpg jpeg png 等
 
+    //TODO
+    private User user;
+
+    public File() {
+    }
+
     public File(String id, String realName, String type) {
         this.id = id;
         this.realName = realName;
         this.type = type;
+    }
+
+
+    @Override
+    public String toString() {
+        return "File{" +
+                "id='" + id + '\'' +
+                ", realName='" + realName + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getId() {
@@ -34,6 +63,4 @@ public class File {
     public void setType(String type) {
         this.type = type;
     }
-//TODO
-
 }

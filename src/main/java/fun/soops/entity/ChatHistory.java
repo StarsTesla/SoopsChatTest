@@ -1,20 +1,30 @@
 package fun.soops.entity;
 
-import java.util.Date;
-
+/**
+ * Author:Stars
+ * Description:聊天记录实体类
+ */
 public class ChatHistory {
     private String id;
     private String friendId;
-    private String content;
-    private String type;
-    private Date createdOn;
+    private Message message;
 
-    public ChatHistory(String id, String friendId, String content, String type, Date createdOn) {
+    public ChatHistory() {
+    }
+
+    public ChatHistory(String id, String friendId, Message message) {
         this.id = id;
         this.friendId = friendId;
-        this.content = content;
-        this.type = type;
-        this.createdOn = createdOn;
+        this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatHistory{" +
+                "id='" + id + '\'' +
+                ", friendId='" + friendId + '\'' +
+                ", message=" + message +
+                '}';
     }
 
     public String getId() {
@@ -29,31 +39,15 @@ public class ChatHistory {
         return friendId;
     }
 
-    public void setFriednId(String friendId) {
+    public void setFriendId(String friendId) {
         this.friendId = friendId;
     }
 
-    public String getContent() {
-        return content;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Date getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 }

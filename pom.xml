@@ -196,5 +196,10 @@
         </resources>
     </build>
 
+<!--    解决中文编码问题-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
 
 </project>
