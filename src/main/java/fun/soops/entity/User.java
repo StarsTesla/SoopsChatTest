@@ -13,12 +13,8 @@ public class User {
     private Date birth;
     private File avatar;
 
-    //TODO
 
-    public User() {
-    }
-
-    ;
+    public User() {};
 
     public User(String id, String username, String password, Date birth) {
         this.id = id;
@@ -27,6 +23,7 @@ public class User {
         this.birth = birth;
 
     }
+
 
     @Override
     public String toString() {
@@ -80,4 +77,3 @@ public class User {
     }
 
 
-}
