@@ -19,7 +19,7 @@ public interface FriendDAO {
 
     void deleteFriend(Friend friend);
 
-    // List<Friend> getFriends(User user);
+    List<Friend> getFriends(User user);
 
 
 }

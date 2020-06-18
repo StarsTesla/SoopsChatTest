@@ -1,10 +1,14 @@
 package fun.soops.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class User {
     private String id;
     private String username;
+
+    @JsonIgnore
     private String password;
     private Date birth;
     //File类的关系属性
@@ -12,8 +16,7 @@ public class User {
 
     //TODO
 
-    public User() {
-    }
+    public User() {};
 
     public User(String id, String username, String password, Date birth) {
         this.id = id;
@@ -34,6 +37,7 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
 
     @Override
     public String toString() {
@@ -85,4 +89,7 @@ public class User {
     public void setAvatar(File avatar) {
         this.avatar = avatar;
     }
+
 }
+
+

@@ -1,5 +1,10 @@
 package fun.soops.entity;
 
+/**
+ * Author:Stars
+ * Description:文件实体类
+ */
+
 public class File {
     private String id; //uuid
     private String realName; //123.jpg
@@ -16,6 +21,7 @@ public class File {
         this.realName = realName;
         this.type = type;
     }
+
 
     @Override
     public String toString() {

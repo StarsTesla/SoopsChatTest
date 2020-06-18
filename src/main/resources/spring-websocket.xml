@@ -80,7 +80,7 @@
     <!-- websocket -->
     <bean id="textHandler" class="fun.soops.socket.TextHandler"/>
     <websocket:handlers allowed-origins="*">
-        <websocket:mapping path="/hello" handler="textHandler"/>
+        <websocket:mapping path="/chat" handler="textHandler"/>
         <websocket:handshake-interceptors>
             <bean class="fun.soops.interceptor.WebSocketInterceptor"/>
         </websocket:handshake-interceptors>

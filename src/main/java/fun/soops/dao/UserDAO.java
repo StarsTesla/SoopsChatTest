@@ -18,5 +18,14 @@ public interface UserDAO {
 
     User getUserByName(String userName);
 
+
     User isUserName(String userName);
+
+    User login(@Param("username") String username, @Param("password") String password);
+
+    User getUserById(@Param("userId") String userId);
+
+    User getUserByUsername(@Param("username") String username);
+
+
 }

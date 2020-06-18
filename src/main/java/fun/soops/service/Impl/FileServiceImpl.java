@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
-@Service("fileServer")
+@Service("fileSerivce")
 public class FileServiceImpl implements FileService {
 
     @Autowired
@@ -38,6 +38,7 @@ public class FileServiceImpl implements FileService {
         fileDAO.addAvatar(file);
         return file;
     }
+    //TODO 文件的存删
 
 
 }

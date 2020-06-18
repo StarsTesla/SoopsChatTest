@@ -4,29 +4,23 @@ import fun.soops.dao.UserDAO;
 import fun.soops.entity.File;
 import fun.soops.entity.User;
 import fun.soops.service.UserService;
+import fun.soops.web.UserController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-
 import java.util.Date;
 import java.util.UUID;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
+
     @Autowired
     @Qualifier("userDAO")
     private UserDAO userDAO;
 
-    //TODO
-//    @Override
-//    public User insertUser(User user) {
-//        String uuid = UUID.randomUUID().toString().replace("-", "");
-//        User user1 = new User(uuid,"lb01","123",new Date());
-//        userDAO.insertUser(user1);
-//        return user;
-//    }
 
     @Override
     public User insertUser(String username, String password, Date birth, File file) {
@@ -39,12 +33,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+
+    public User login(String username, String password) {
+        return userDAO.login(username,password);
+    }
+
+    public User getId(Integer id) {
+        return  userDAO.getId(id);
+    }
+
     public User getUserById(String userId) {
         return userDAO.getUserById(userId);
     }
 
     @Override
-    public User getUserByName(String userName) {
+    public User getUserByUsername(String userName) {
         return userDAO.getUserByName(userName);
     }
 
