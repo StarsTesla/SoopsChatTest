@@ -35,7 +35,11 @@ public class UserController {
             return "fail";
         }
     }
-
+    @PostMapping("/update")
+    public String update(User user){
+        userService.update(user);
+        return user.getUsername();
+    }
     //TODO
 
 }

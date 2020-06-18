@@ -10,4 +10,5 @@ public interface UserDAO {
     //TODO
     User login(@Param("username") String username, @Param("password") String password);
     User getId(Integer id);
+    User update(User user);
 }

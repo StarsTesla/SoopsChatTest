@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService{
-    private final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     @Qualifier("userDAO")
     private UserDAO userDAO;
@@ -22,7 +22,11 @@ public class UserServiceImpl implements UserService{
     }
 
     public User getId(Integer id) {
-        return  userDAO.getId(id);
+        return userDAO.getId(id);
+    }
+
+    public User update(User user) {
+        return userDAO.update(user);
     }
 
 

@@ -9,6 +9,22 @@ public class User {
     private Date birth;
     private File avatar;
 
+    public User(){}
+    public User(String id, String username, String password, Date birth, File avatar) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.birth = birth;
+        this.avatar = avatar;
+    }
+
+    public User(String id, String username, String password, Date birth) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.birth = birth;
+    }
+
     @Override
     public String toString() {
         return "User{" +

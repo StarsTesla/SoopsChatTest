@@ -4,6 +4,7 @@ package fun.soops.test;
  *核心模块测试类
  */
 
+import fun.soops.entity.File;
 import fun.soops.entity.Friend;
 import fun.soops.entity.User;
 import fun.soops.service.FriendService;
@@ -16,6 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import sun.net.www.content.image.png;
+
+import java.awt.*;
+import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-websocket.xml")
@@ -24,9 +29,10 @@ public class TestCore {
     @Autowired
     @Qualifier("friendService")
     FriendService friendService;
-
+    UserService userService;
     //TODO
     private final Logger log = LoggerFactory.getLogger(TestCore.class);
+
 
     @Test
     public void test() {
@@ -42,7 +48,13 @@ public class TestCore {
         System.out.println(friend);
     }
 
+    @Test
+    public void update() {
 
+        File file = new File();
+        User user = new User("111","lb","7758258",new Date(),file);
+        userService.update(user);
+    }
     @Test
     public void insertFriend() {
         String id1 = "003";

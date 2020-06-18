@@ -11,4 +11,22 @@
     <select id="login" resultType="User">
         select * from t_user where username = #{username} and password = #{password}
     </select>
+    <update id="update" parameterType="User">
+        UPDATE t_user
+        <set>
+
+                username=#{username},
+
+
+                password=#{password},
+
+
+                birth=#{birth},
+
+
+                avatar=#{avatar},
+
+        </set>
+        where id=#{id}
+    </update>
 </mapper>
