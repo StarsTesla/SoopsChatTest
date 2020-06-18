@@ -4,6 +4,11 @@
 
 <mapper namespace="fun.soops.dao.UserDAO">
 
+
+    <select id="login" resultType="User">
+        select * from t_user where username = #{username} and password = #{password}
+    </select>
+
     <resultMap id="user_query" type="User">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
@@ -34,4 +39,5 @@
         where t_user.username=#{username}
     </select>
     <!-- 通过用户名来获取用户-->
+
 </mapper>
