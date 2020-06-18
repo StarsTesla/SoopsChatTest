@@ -3,7 +3,51 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="fun.soops.dao.UserDAO">
+    <resultMap id="user_query" type="User">
+        <id column="id" property="id"></id>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+        <result column="birth" property="birth"></result>
+
+        <association property="avatar" javaType="File">
+            <id column="avatar_id" property="id"></id>
+            <result column="realName" property="realName"></result>
+            <result column="type" property="type"></result>
+        </association>
+    </resultMap>
 
     <!-- TODO-->
+    <select id="getUserById" resultMap="user_query">
+        select t_user.id, t_user.username, t_user.password, t_user.birth,
+                t_file.id avatar_id, t_file.realName, t_file.type
+        from t_user join t_file on t_file.id = t_user.avatar
+        where t_user.id=#{userId}
+    </select>
+
+    <!--2020/6/16end-->
+    <!-- TODO-->
+    <insert id="insertUser" parameterType="User">
+        insert into t_user value (#{id},#{username},#{password},#{birth},#{avatar.id})
+    </insert>
+
+
+    <!--    <select id="getUserById" resultType="User">-->
+    <!--        select * from t_user where id=#{id}-->
+    <!--    </select>-->
+    <!--    <select id="getUserById" resultType="user_rel">-->
+    <!--        select t_user.id,t_user.username,t_user.password,t_user.birth,-->
+    <!--                t_file.id fileId,t_file.realName,t_file.type-->
+    <!--        from t_user join t_file-->
+    <!--        on t_user.id = t_file.id-->
+    <!--        where id=#{id}-->
+    <!--    </select>-->
+
+    <select id="getUserByName" resultType="User">
+        select * from t_user where username=#{username}
+    </select>
+
+    <select id="isUserName" resultType="User">
+        select * from t_user where username=#{username}
+    </select>
 
 </mapper>

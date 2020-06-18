@@ -23,4 +23,13 @@
     <!--    /**  匹配所有路由，优先级最低-->
     <mvc:default-servlet-handler/>
 
+    <!--试图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".html"></property>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    </bean>
 </beans>
