@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<form method="post" action="/user/register">
+    <h3>Register</h3>
+    <p>avatar: <input type="file" name="realName"/></p>
+    <p>
+        username:<input type="text" name="username" class="username" placeholder="Name" minlength="1" maxlength="50"/>
+        <span class="spanContent"></span>
+    </p>
+    <p></p>password:<input type="password" class="password" name="password" placeholder="Password" minlength="6"
+                           maxlength="20"/></p>
+    <p><input type="submit" value="Register" class="submitBtn"/></p>
+    <div>
+        <a href="/login.html">Already have an account?</a>
+    </div>
+</form>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    var spanContent = document.querySelector(".spanContent");
+    var username = document.querySelector(".username");
+
+    username.addEventListener("blur", function () {
+        var username = $(".username").val();
+        if (username != "") {
+            $.ajax({
+                url: "http://localhost:8080/user/isUserName",
+                data: {"username": username},
+                type: "POST",
+                success: function (data) {
+                    if (data == "ok") {
+                        spanContent.innerHTML = "用户名可用";
+                        spanContent.style.color = "green";
+                    } else {
+                        spanContent.innerHTML = "用户名已存在";
+                        spanContent.style.color = "red";
+                    }
+                }
+            })
+        } else {
+            spanContent.innerHTML = "不能为空";
+            spanContent.style.color = "black";
+        }
+    })
+
+
+</script>
+</body>
+</html>

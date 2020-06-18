@@ -11,8 +11,10 @@ public class User {
     @JsonIgnore
     private String password;
     private Date birth;
+    //File类的关系属性
     private File avatar;
 
+    //TODO
 
     public User() {};
 
@@ -21,7 +23,19 @@ public class User {
         this.username = username;
         this.password = password;
         this.birth = birth;
+    }
 
+    public User(String id, String username, String password, Date birth, File avatar) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.birth = birth;
+        this.avatar = avatar;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
 
@@ -75,5 +89,7 @@ public class User {
     public void setAvatar(File avatar) {
         this.avatar = avatar;
     }
+
+}
 
 
