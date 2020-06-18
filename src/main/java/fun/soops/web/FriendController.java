@@ -3,6 +3,7 @@ package fun.soops.web;
 import fun.soops.entity.Friend;
 import fun.soops.entity.User;
 import fun.soops.service.FriendService;
+import fun.soops.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author:Stars
@@ -27,6 +30,11 @@ public class FriendController {
     @Autowired
     @Qualifier("friendService")
     private FriendService friendService;
+
+    @Autowired
+    @Qualifier("userService")
+    private UserService userService;
+
     private Logger log = LoggerFactory.getLogger(FriendController.class);
 
     // TODO 将接口返回都改成Json，用map和jackson
@@ -44,31 +52,45 @@ public class FriendController {
 
 
     @PostMapping(value = "/addFriend")
-    public String addFriend(String userId1, String userId2) {
-        Friend friend = friendService.getFriendBy2UsersId(userId1, userId2);
+    public Map<String, String> addFriend(String friendName, HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        User friend = userService.getUserByUsername(friendName);
 
-        if (friend != null) {
+        Friend friendRel = friendService.getFriendBy2UsersId(userId, friend.getId());
+        Map<String, String> data = new HashMap<String, String>();
+        if (friendRel != null) {
+
+            data.put("msg", "已经存在好友关系");
+            data.put("code", "400");
             log.warn("已经存在好友关系");
-            return "{msg:已经存在好友关系,code:400}";
+            return data;
         }
 
-        String friendId = friendService.insertFriend(userId1, userId2);
-        log.info("insert friend of " + userId1 + " and " + userId2);
-
-        return "{msg:添加成功,code:200,friendId:" + friendId + "}";
+        friendService.insertFriend(userId, friend.getId());
+        log.info("insert friend of " + userId + " and " + friend.getId());
+        data.put("msg", "添加成功");
+        data.put("code", "200");
+        return data;
 
     }
 
     @PostMapping("/deleteFriend")
-    public String deleteFriend(String userId1, String userId2) {
-        Friend friend = friendService.getFriendBy2UsersId(userId1, userId2);
-
+    public Map<String, String> deleteFriend(String friendName, HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        User friend = userService.getUserByUsername(friendName);
+        Friend friendRel = friendService.getFriendBy2UsersId(userId, friend.getId());
+        Map<String, String> data = new HashMap<String, String>();
         if (friend == null) {
             log.warn("不存在好友关系");
-            return "{msg:不存在好友关系,code:400}";
+            data.put("msg", "已经存在好友关系");
+            data.put("code", "400");
+            return data;
         }
-        String friendId = friendService.deleteFriend(userId1, userId2);
-        return "{msg:删除成功,code:200,friendId:" + friendId + "}";
+        friendService.deleteFriend(userId, friend.getId());
+        log.info("清除好友关系");
+        data.put("msg", "删除关系成功");
+        data.put("code", "200");
+        return data;
     }
 
 

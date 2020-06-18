@@ -1,41 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="utf-8">
-    <title>菜鸟教程(runoob.com)</title>
-    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <!-- purpose.css-->
+    <link rel="stylesheet" href="css/purpose.css"/>
+
+    <script src="chatroom.js"></script>
 </head>
-<body>
 
+<body class="bg-secondary">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3  hidden-xs shadow-sm bg-light mt-3">
+            <div class="mt-5">
+                <h2 style="display: inline;" class="mr-7 ml-3">ChatRoom</h2>
+                <button type="button" class="btn btn-soft-info">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-soft-warning">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
 
-<script>
+            </div>
+            <div id="chatWindows" class="list-group mt-6" style="overflow:auto;height:60%;">
+                <div class="list-group-item">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <!-- Avatar -->
+                            <a href="#" class="avatar rounded-circle">
+                                <img alt="Image placeholder"
+                                     src="http://img4.imgtn.bdimg.com/it/u=3550962417,1959867437&fm=26&gp=0.jpg"
+                                     class="">
+                            </a>
+                        </div>
+                        <div class="col ml-n2">
+                            <a href="#!" class="d-block h6 mb-0">John Sullivan</a>
+                            <div>
+                                <span class="text-sm text-success">●</span>
+                                <small>Online</small>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <span class="badge badge-danger">
+                                23
+                        </span>
+                    </div>
+                </div>
 
-    socket.onopen = function () {
-        console.log("open...");
-    }
-    socket.onclose = function () {
-        console.log("close");
-    }
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 bg-secondary">
 
-    function send() {
+            <div class="row">
+                <div class="col mt-5">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="avatar rounded-circle"
+                                     src="http://img1.imgtn.bdimg.com/it/u=4173644623,1484841724&fm=11&gp=0.jpg"
+                                     alt="alt">
+                            </a>
+                        </div>
+                        <div class="row">MotherFucker</div>
+                        <div class="badge badge-success ">
+                            Online
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 mt-5">
+                    <button type="button" class="btn btn-lg btn-animated  btn-animated-y">
+                            <span class="btn-inner--visible ">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span><span class="btn-inner--hidden">更多</span>
+                    </button>
+                </div>
 
-        var msg = $("#msgBox").val();
-        $("#msgBox").val("");
-        console.log(msg);
-        socket.send(msg);
-    }
+            </div>
 
-    socket.onmessage = function (e) {
-        console.log(e);
-    }
+            <hr/>
+            <div class="row-auto mt-5 bg-gray-300" style="overflow: auto; height:60%">
+                <div class="message friend">
+                    adss
+                </div>
+                sad
+                <div class="message me">
+                    sad
+                </div>
+            </div>
+            <div class="row-auto mt-5" style="height:7%;position: relative;">
 
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-10 form-group">
+                    <input class=" form-control" placeholder="Type to send"
+                           style="height:50px; font-size: 16px;border:0px;outline:none;"></input>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">
+                    <button type="button" class="btn btn-secondary btn-lg btn-circle">
+                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-success btn-lg btn-circle" aria-label="false">
+                        <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    window.addEventListener("onclose", function (event) {
-        socket.close();
-    })
+    </div>
+</div>
 
-
-</script>
 
 </body>
+
 </html>
