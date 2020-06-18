@@ -1,13 +1,29 @@
 package fun.soops.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 public class User {
     private String id;
     private String username;
+
+    @JsonIgnore
     private String password;
     private Date birth;
     private File avatar;
+
+
+    public User() {};
+
+    public User(String id, String username, String password, Date birth) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.birth = birth;
+
+    }
+
 
     @Override
     public String toString() {
@@ -59,5 +75,5 @@ public class User {
     public void setAvatar(File avatar) {
         this.avatar = avatar;
     }
-//TODO
-}
+
+

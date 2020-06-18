@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+先选择好友<br/>
+<select id="friends">
+    <option>请选择好友</option>
+</select>
+<button onClick="start()">开始聊天</button>
+<button onClick="close()">结束聊天</button>
+<br/>
+
+<div id="chatTemplate" style="display:none">
+    <div class="mb-1">
+        <p>
+            <span class="chat-name font-weight-bold"></span>:
+            <br>
+            <span class="chat-message"></span>
+            <br>
+            <span class="chat-timestamp text-muted" style="font-size:0.8em"></span>
+        </p>
+    </div>
+</div>
+
+
+<h3>ChatBox</h3>
+<div id="chatBox"
+     style="display:none;border:1px solid black;width:600px;height:500px;overflow:auto;border-radius: 8px;">
+
+
+</div>
+<input type="text" id="msgBox" style="border:1px solid black;border-radius: 5px;
+                                        width:500px;height:50px;
+                                        overflow:auto;margin-top:20px;
+                                        "/>
+<br/>
+<button style="margin-top:20px" onClick="send()">
+    SendMessage
+</button>
+</div>
+
+
+<script>
+    var url = 'ws://localhost:8080/chat';  //配置文件中配的path有关
+    var socket = new WebSocket(url);
+    //  window.chatWS = socket;
+    // console.log(socket.readyState)
+
+    var friend = null;
+    var friends;
+    $(document).ready(function () {
+        $.ajax({
+            url: "http://localhost:8080/api/friend/getFriends",
+            method: "GET",
+            success: function (res) {
+                // console.log(JSON.parse(res));
+                //console.log(res[0].avatar)
+                friends = res;
+                $.each(res, function (i, item) {
+                    var option = $('<option></option>');
+                    option.text(item.username)
+                    $("#friends").append(option)
+                });
+
+            }
+        })
+    })
+
+    socket.onopen = function () {
+        console.log("open...");
+    }
+    socket.onclose = function (e) {
+        console.log("close");
+        socket.close();
+    }
+
+    function close() {
+        console.log("close");
+        socket.close();
+    }
+
+    function start() {
+        if ((socket.readyState) !== 1) {
+            // CONNECTING：值为0，表示正在连接。
+            // OPEN：值为1，表示连接成功，可以通信了。
+            // CLOSING：值为2，表示连接正在关闭。
+            // CLOSED：值为3，表示连接已经关闭，或者打开连接失败。
+
+            alert("还没链接上呢 " + " 链接状态：" + socket.readyState);
+        } else {
+            friend = $("#friends").val();
+            $('h3').text("Chat With " + friend);
+            if ($('#chatBox').css('display') === 'none') {
+                //alert("我是隐藏的");
+                $("#chatBox").show();
+            }
+
+            //以下用于多聊天窗口情况
+            // var friendName = $("#friends").val();
+            // $.ajax({
+            //     url:"http://localhost:8080/api/chat/addChatWindow",
+            //     method:"POST",
+            //     data:{"friendName":friendName},
+            //     success:function(res){
+            //         console.log(res);
+            //         if(res.code === "200")
+            //         {
+            //             if($('#chatBox').css('display') === 'none')
+            //             {
+            //                 //alert("我是隐藏的");
+            //                 $('h3').text("Chat With " + friendName);
+            //                 $("#chatBox").show();
+            //             }
+            //
+            //         }
+            //         else
+            //         {
+            //             alert(res.msg);
+            //         }
+            //     },
+            //     fail:function(res){
+            //         console.log(res);
+            //     },
+            //     error:function(res)
+            //     {
+            //         console.log(res);
+            //     }
+            // })
+        }
+
+    }
+
+    //时间模版
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "H+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+
+    function send() {
+        var content = $("#msgBox").val();
+        var now = new Date().Format('yyyy-MM-dd HH:mm:ss');
+
+        var message = {
+            'content': content,
+            'fromUser': '',
+            'toUser': friend,
+            'createdOn': now,
+            'type': 'text'
+        }
+
+        message = JSON.stringify(message);
+
+        console.log(typeof message);
+        socket.send(message);
+
+        $("#msgBox").val("");
+
+    }
+
+    socket.onmessage = function (e) {
+        console.log(typeof e.data);
+        var respond = JSON.parse(e.data);
+        console.log(e.data);
+
+        var templ = $('#chatTemplate').html();
+        var div = $('<div></div>');
+        div.html(templ);
+        div.find('.chat-name').text(respond.fromUser);
+        div.find('.chat-timestamp').text(new Date(respond.createdOn).toLocaleString());
+        div.find('.chat-message').text(respond.content);
+        var room = $('#chatBox');
+        room.append(div);
+        room.scrollTop(room.prop('scrollHeight') - room.height());
+
+
+    }
+
+
+</script>
+</body>
+</html>

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService{
     private final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     @Qualifier("userDAO")
     private UserDAO userDAO;
@@ -26,5 +27,12 @@ public class UserServiceImpl implements UserService{
     }
 
 
-    //TODO
+    public User getUserById(String userId) {
+        return userDAO.getUserById(userId);
+    }
+
+    public User getUserByUsername(String username) {
+        return userDAO.getUserByUsername(username);
+    }
+    //TODO lb的模块
 }
