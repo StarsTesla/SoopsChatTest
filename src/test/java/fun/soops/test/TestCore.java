@@ -88,7 +88,7 @@ public class TestCore {
 //    }
     @Test
     public void getUserByName() {
-        User user = userService.getUserByName("lb");
+        User user = userService.getUserByUsername("lb");
         System.out.println(user);
         if (user.getUsername().equals("sad")) {
             System.out.println("已存在");
