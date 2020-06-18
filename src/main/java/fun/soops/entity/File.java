@@ -11,6 +11,7 @@ public class File {
     private String type; // jpg jpeg png 等
 
     //TODO
+    private User user;
 
     public File() {
     }
@@ -19,6 +20,24 @@ public class File {
         this.id = id;
         this.realName = realName;
         this.type = type;
+    }
+
+
+    @Override
+    public String toString() {
+        return "File{" +
+                "id='" + id + '\'' +
+                ", realName='" + realName + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getId() {
