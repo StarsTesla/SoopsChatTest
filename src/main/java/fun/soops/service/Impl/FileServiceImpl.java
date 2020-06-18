@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
-@Service("fileSerivce")
+@Service("fileService")
 public class FileServiceImpl implements FileService {
 
     @Autowired
@@ -21,7 +21,6 @@ public class FileServiceImpl implements FileService {
 
     //TODO
     //实现添加avatar方法
-    @Override
     public File addAvatar(@Param("realName") String realName) {
         //生成uuid(唯一标识)
         String uuid = UUID.randomUUID().toString().replace("-", "");

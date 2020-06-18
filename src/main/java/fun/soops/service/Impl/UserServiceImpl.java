@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
 
-    @Override
+
     public User insertUser(String username, String password, Date birth, File file) {
         //生成唯一id
         String uuid = UUID.randomUUID().toString().replace("-", "");
@@ -32,26 +32,21 @@ public class UserServiceImpl implements UserService {
         return user1;
     }
 
-    @Override
 
     public User login(String username, String password) {
         return userDAO.login(username,password);
     }
 
-    public User getId(Integer id) {
-        return  userDAO.getId(id);
-    }
 
     public User getUserById(String userId) {
         return userDAO.getUserById(userId);
     }
 
-    @Override
+
     public User getUserByUsername(String userName) {
-        return userDAO.getUserByName(userName);
+        return userDAO.getUserByUsername(userName);
     }
 
-    @Override
     public boolean isUserName(String userName) {
         Boolean flag = false;
         User user = userDAO.isUserName(userName);

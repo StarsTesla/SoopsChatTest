@@ -51,11 +51,6 @@ public class UserController {
         }
     }
 
-    //TODO
-
-    @Autowired
-    UserService userService;
-
     @Autowired
     FileService fileService;
 
@@ -73,7 +68,7 @@ public class UserController {
                                    @Param("birth") Date birth, @Param("realName") String realName) {
 //        String username, String password, Date birth, File file
         try {
-            User isUser = userService.getUserByName(username);
+            User isUser = userService.getUserByUsername(username);
             if (isUser != null && isUser.equals(username)) {
                 System.out.println("已存在用户！！");
                 return new ModelAndView("redirect:/register.html");
