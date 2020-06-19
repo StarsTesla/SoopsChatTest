@@ -46,6 +46,8 @@ public class UserController {
         if (user != null ) {
             //登录成功
             //session保存
+            session.setAttribute("Userid", user.getId());
+            session.setAttribute("Username",user.getUsername());
             session.setAttribute("loginUser", user);
             return "success";
         }
