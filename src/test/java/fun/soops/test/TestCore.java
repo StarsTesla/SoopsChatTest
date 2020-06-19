@@ -60,6 +60,14 @@ public class TestCore {
         Friend friend = friendService.getFriendBy2Usersname("Stars", "Lb");
         System.out.println(friend);
     }
+    @Test
+    //测试修改个人信息成功
+    public void update(){
+        File file = new File("111","2","3");
+        String a = userService.getIdByUsername("lb");
+        userService.update(a,"zxc","123456",new Date(),file);
+
+    }
 
 //    @Test
 //    public void insertFriend() {

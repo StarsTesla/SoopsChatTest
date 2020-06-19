@@ -37,9 +37,17 @@ public class UserServiceImpl implements UserService {
         return userDAO.login(username,password);
     }
 
+    public void update( String id,String username, String password, Date birth, File avatar) {
+        userDAO.update(id,username,password, birth,avatar);
+    }
+
 
     public User getUserById(String userId) {
         return userDAO.getUserById(userId);
+    }
+
+    public String getIdByUsername(String username) {
+        return userDAO.getIdByUsername(username);
     }
 
 

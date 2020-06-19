@@ -34,8 +34,13 @@ public class UserController {
     private UserService userService;
     private Logger log = LoggerFactory.getLogger(UserController.class);
 
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("loginUser");   // 获取session信息，移除session，直接返回登录界面，并连接跳转。
+        return "redirect:login";
+    }
     @PostMapping("/login")
-    public String login(String username, String password, HttpSession session){
+    public String login(@Param("username")String username, @Param("password")String password, HttpSession session){
         System.out.println("login:::username:::" + username + ", password:::" + password);
         User user = userService.login(username, password);
         if (user != null ) {
@@ -49,6 +54,11 @@ public class UserController {
 
             return "fail";
         }
+    }
+
+    @PostMapping("/update")
+    public void update(@Param("username")String username , @Param("password")String password ,@Param("birth") Date birth , @Param("avatar")File avatar){
+        //头像上传 未完成 修改个人信息 要调用先暂停 后台测试已通过
     }
 
     @Autowired

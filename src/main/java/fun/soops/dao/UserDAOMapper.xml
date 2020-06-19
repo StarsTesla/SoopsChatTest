@@ -12,6 +12,30 @@
         select * from t_user where username = #{username} and password = #{password}
     </select>
 
+    <select id="getIdByUsername" resultType="String">
+        select id
+        from t_user
+        where username=#{username}
+    </select>
+
+    <update id="update" parameterType="User">
+        UPDATE t_user
+        <set>
+            username=#{username},
+
+
+            password=#{password},
+
+
+            birth=#{birth},
+
+
+            avatar=#{avatar.id},
+
+        </set>
+        where  id=#{id}
+    </update>
+
     <resultMap id="user_query" type="User">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
@@ -33,6 +57,7 @@
         from t_user join t_file on t_file.id = t_user.avatar
         where t_user.id=#{userId}
     </select>
+
 
     <!--2020/6/16end-->
     <!-- TODO-->
