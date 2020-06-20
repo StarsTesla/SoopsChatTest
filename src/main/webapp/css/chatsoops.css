@@ -1,0 +1,132 @@
+html.body {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.username-style {
+    margin-left: 0px !important;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.status {
+    position: relative;
+    top: 30px;
+    left: -84px;
+}
+
+.border-more {
+    border: 1px solid rgb(112, 112, 112) !important;
+    border-radius: 5px !important;
+    opacity: 0.6;
+}
+
+.border-more {
+    border: 1px solid rgba(197, 197, 197, 0.658) !important;
+    border-radius: 5px !important;
+}
+
+.boerder-shadow {
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 2px rgba(118, 176, 252, 0.151);
+}
+
+.message-friend {
+    margin-top: 45px;
+    margin-left: 20px;
+    position: relative;
+}
+
+.message-friend img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: absolute;
+
+}
+
+.message-friend span {
+    display: inline-block;
+    min-width: 50px;
+    max-width: 500px;
+    min-height: 32px;
+    height: auto;
+    padding: 5px;
+    text-align: left;
+
+    position: relative;
+    left: 60px;
+    top: 17px;
+
+    border-radius: 5px;
+    background-color: #E8F2FF;
+}
+
+.message-me {
+    position: absolute;
+    right: 60px;
+}
+
+.message-me img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+}
+
+.message-me span {
+    display: inline-block;
+    min-width: 50px;
+    max-width: 500px;
+    min-height: 32px;
+    border-radius: 5px;
+    padding: 5px;
+    text-align: right;
+    position: relative;
+    right: 10px;
+    top: 15px;
+    background-color: rgb(218, 218, 218);
+}
+
+.user-name-l {
+    display: inline-block;
+    position: absolute;
+    left: 62px;
+    top: -5px;
+    font-size: 16px;
+
+}
+
+.user-name-r {
+    display: inline-block;
+    position: absolute;
+    right: 62px;
+    top: -5px;
+    font-size: 16px;
+
+}
+
+.btn-soops {
+    border: 1px solid rgba(0, 0, 0, 0.099) !important;
+}
+
+.svg-soops {
+    width: 16px;
+    height: 16px;
+    color: red;
+}
+
+.svg-soops-exc {
+    width: 16px !important;
+    height: 16px !important;
+
+}
+
+.col-2-soops {
+
+    right: 16px;
+}
+
+.soops-shadow {
+    box-shadow: 0 0 2px 2px rgba(228, 228, 228, 0.897);
+}
