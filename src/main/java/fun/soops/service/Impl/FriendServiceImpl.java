@@ -61,7 +61,7 @@ public class FriendServiceImpl implements FriendService {
         return uuid1;
     }
 
-    //解除好友关系 双方都删除
+    //解除好友关系
     public String deleteFriend(String userId1, String userId2) {
         Friend friend = friendDAO.getFriendBy2UsersId(userId1, userId2);
         Friend friendFriend = friendDAO.getFriendBy2UsersId(userId2, userId1);

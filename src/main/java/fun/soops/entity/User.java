@@ -1,31 +1,22 @@
 package fun.soops.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 public class User {
-    @JsonIgnore
     private String id;
     private String username;
 
     @JsonIgnore
     private String password;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     //File类的关系属性
     private File avatar;
 
     //TODO
 
-    public User() {
-    }
-
-    ;
+    public User() {};
 
     public User(String id, String username, String password, Date birth) {
         this.id = id;
