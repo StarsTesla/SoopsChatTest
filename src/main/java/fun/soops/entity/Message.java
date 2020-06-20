@@ -19,11 +19,11 @@ public class Message {
     private String content;
     private String fromUser;
     private String toUser;
-    private String type;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdOn;
+    private String type;
 
 
     public Message() {

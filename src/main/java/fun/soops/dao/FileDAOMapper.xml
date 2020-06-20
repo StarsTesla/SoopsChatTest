@@ -7,9 +7,5 @@
     <!--TODO-->
     <insert id="addAvatar" parameterType="File">
     insert into t_file values (#{id},#{realName},#{type})
-    </insert>
-
-    <insert id="saveFile" parameterType="File">
-    insert into t_file values (#{id},#{realName},#{type})
-    </insert>
+</insert>
 </mapper>
