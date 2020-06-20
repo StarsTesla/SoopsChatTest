@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 
 <head>
@@ -122,6 +123,46 @@
     </div>
 </div>
 
+
+</body>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+</head>
+<body>
+
+
+<script>
+
+    socket.onopen = function () {
+        console.log("open...");
+    }
+    socket.onclose = function () {
+        console.log("close");
+    }
+
+    function send() {
+
+        var msg = $("#msgBox").val();
+        $("#msgBox").val("");
+        console.log(msg);
+        socket.send(msg);
+    }
+
+    socket.onmessage = function (e) {
+        console.log(e);
+    }
+
+
+    window.addEventListener("onclose", function (event) {
+        socket.close();
+    })
+
+
+</script>
 
 </body>
 

@@ -5,12 +5,15 @@ import fun.soops.entity.File;
 import fun.soops.entity.User;
 import fun.soops.service.UserService;
 import fun.soops.web.UserController;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service("userService")
@@ -56,6 +59,13 @@ public class UserServiceImpl implements UserService {
             flag = false;
         }
         return flag;
+    }
+
+    //模糊搜索
+    @Override
+    public List<User> searchUserByUsername(String username) {
+        List<User> users = userDAO.searchUserByUsername(username);
+        return users;
     }
 
 
