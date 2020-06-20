@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface UserDAO {
@@ -21,5 +22,6 @@ public interface UserDAO {
 
     User getUserByUsername(@Param("username") String username);
 
+    List<User> searchUserByUsername(@Param("username") String username);
 
 }

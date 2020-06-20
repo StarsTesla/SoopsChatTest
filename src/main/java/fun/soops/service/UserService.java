@@ -4,7 +4,10 @@ import fun.soops.entity.File;
 import fun.soops.entity.User;
 
 import java.util.Date;
+import java.util.List;
+
 import fun.soops.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserService {
     User login(String username, String password);
@@ -18,4 +21,5 @@ public interface UserService {
 
     boolean isUserName(String userName);
 
+    List<User> searchUserByUsername(@Param("username") String username);
 }
