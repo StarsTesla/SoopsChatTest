@@ -20,9 +20,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -131,5 +139,32 @@ public class TestCore {
         }
     }
 
+    @Test
+    public void saveFile() throws IOException {
 
+        final BASE64Encoder encoder = new BASE64Encoder();
+        final BASE64Decoder decoder = new BASE64Decoder();
+
+        String msg = "";
+
+
+        // msg.replace("data:image/png;base64,","");
+
+        byte[] b = decoder.decodeBuffer(msg);
+        for (int i = 0; i < b.length; i++) {
+            if (b[i] < 0) {
+                b[i] += 256;
+            }
+        }
+
+        String imgName = UUID.randomUUID().toString().replace("-", "");
+
+        String imgPath = "./" + imgName + ".jpeg";
+
+        OutputStream out = new FileOutputStream(imgPath);
+        out.write(b);
+        out.flush();
+        out.close();
+
+    }
 }

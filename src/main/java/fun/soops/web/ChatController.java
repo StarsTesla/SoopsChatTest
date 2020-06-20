@@ -65,7 +65,6 @@ public class ChatController {
     }
 
     //获取聊天记录
-    //TODO 分页版的和ajax版的还没写
     @GetMapping("/getChatHistory")
     public List<Message> getChatHistory(String friendName, HttpSession session) {
         String username = (String) session.getAttribute("username");

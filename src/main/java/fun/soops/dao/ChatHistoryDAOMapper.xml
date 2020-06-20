@@ -18,7 +18,7 @@
     </resultMap>
 
     <select id="getHistoryByFriendId" resultMap="history_query">
-        select * from t_chatHistory where friendId=#{friendId}
+        select * from t_chatHistory where friendId=#{friendId1} or friendId=#{friendId2} order by createdOn desc
     </select>
     <!-- 聊天记录查询 -->
 

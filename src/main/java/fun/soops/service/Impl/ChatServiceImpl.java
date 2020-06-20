@@ -1,5 +1,6 @@
 package fun.soops.service.Impl;
 
+import com.github.pagehelper.PageHelper;
 import fun.soops.dao.ChatHistoryDAO;
 import fun.soops.dao.FriendDAO;
 import fun.soops.dao.UserDAO;
@@ -32,11 +33,12 @@ public class ChatServiceImpl implements ChatService {
 
 
     //通过两个用户 来获取之间所有聊天记录
-    //这里查的是user1 -》 user2 的聊天记录
     public List<Message> getHistoryBy2User(User user1, User user2) {
 
-        Friend friend = friendDAO.getFriendBy2UsersId(user1.getId(), user2.getId());
-        List<ChatHistory> histyList = chatHistoryDAO.getHistoryByFriendId(friend.getId());
+        Friend friend1 = friendDAO.getFriendBy2UsersId(user1.getId(), user2.getId());
+        Friend friend2 = friendDAO.getFriendBy2UsersId(user2.getId(), user1.getId());
+        // PageHelper.startPage(num,10);  //默认一次显示最多10条
+        List<ChatHistory> histyList = chatHistoryDAO.getHistoryByFriendId(friend1.getId(), friend2.getId());
 
         List<Message> messages = new ArrayList<Message>();
         for (ChatHistory history : histyList) {
@@ -51,7 +53,7 @@ public class ChatServiceImpl implements ChatService {
         List<ChatHistory> histyList = new ArrayList<ChatHistory>();
         for (Message message : messages) {
             String uuid = UUID.randomUUID().toString().replace("-", "");
-            Friend friend = friendDAO.getFriendBy2UsersId(message.getFromUser(), message.getToUser());
+            Friend friend = friendDAO.getFriendBy2Usersname(message.getFromUser(), message.getToUser());
 
             histyList.add(new ChatHistory(uuid, friend.getId(), message));
         }

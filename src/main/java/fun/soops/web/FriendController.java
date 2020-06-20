@@ -78,7 +78,7 @@ public class FriendController {
     public Map<String, String> deleteFriend(String friendName, HttpSession session) {
         String userId = (String) session.getAttribute("userId");
         User friend = userService.getUserByUsername(friendName);
-        Friend friendRel = friendService.getFriendBy2UsersId(userId, friend.getId());
+       // Friend friendRel = friendService.getFriendBy2UsersId(userId, friend.getId());
         Map<String, String> data = new HashMap<String, String>();
         if (friend == null) {
             log.warn("不存在好友关系");

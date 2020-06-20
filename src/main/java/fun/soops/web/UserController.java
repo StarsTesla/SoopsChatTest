@@ -100,4 +100,12 @@ public class UserController {
     public String goLogin() {
         return "login";
     }
+
+    @GetMapping("/getMe")
+    public User getMe(HttpSession session) {
+        String username = (String) session.getAttribute("username");
+        User me = userService.getUserByUsername(username);
+        return me;
+    }
+
 }
