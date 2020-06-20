@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <script src="../js/jquery.js"></script>
+
+
+    <!-- 最新的 Bootstrap4 核心 CSS 和 JavaScript 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="../css/chatsoops.css"/>
+    <link rel="stylesheet" href="../css/purpose.css"/>
+    <script src="../js/purpose.js"></script>
+
+
+</head>
+
+<body>
+<div class="container-fluid" style="overflow: hidden;">
+    <div class="row">
+        <!-- 第一个col -->
+        <div class="col-md-3 col-lg-3 col-xl-3 bg-white">
+            <div class="row ">
+                <div class="mt-5">
+                    <h3 style="display: inline;" class="mr-3 ml-3">Chatroom</h3>
+                    <button type="button" class="btn btn-soft-info btn-sm" data-toggle="modal"
+                            data-target="#modal-addfriend">
+                        <svg class="bi bi-person-plus" width="1em" height="1em" viewBox="0 0 16 16"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM6 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm4.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                        </svg>
+                    </button>
+
+                    <button type="button" class="btn btn-soft-warning btn-sm" data-toggle="modal"
+                            data-target="#modal-addwindow">
+                        <svg class="bi bi-plus-square" width="1em" height="1em" viewBox="0 0 16 16"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                            <path fill-rule="evenodd"
+                                  d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                            <path fill-rule="evenodd"
+                                  d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        </svg>
+                    </button>
+
+                    <!-- add friend Modal -->
+                    <div class="modal fade" id="modal-addfriend" tabindex="-1" role="dialog"
+                         aria-labelledby="modal-addfriend" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="modal-title d-flex align-items-center" id="modal-title-addfriend">
+                                        <div>
+                                            <div
+                                                    class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
+                                                <svg class="bi bi-emoji-laughing" width="1em" height="1em"
+                                                     viewBox="0 0 16 16" fill="currentColor"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                          d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                    <path fill-rule="evenodd"
+                                                          d="M12.331 9.5a1 1 0 0 1 0 1A4.998 4.998 0 0 1 8 13a4.998 4.998 0 0 1-4.33-2.5A1 1 0 0 1 4.535 9h6.93a1 1 0 0 1 .866.5z"/>
+                                                    <path
+                                                            d="M7 6.5c0 .828-.448 0-1 0s-1 .828-1 0S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 0-1 0s-1 .828-1 0S9.448 5 10 5s1 .672 1 1.5z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">add friend</h6>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <div class="form-group">
+
+                                                <input class="form-control" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-secondary btn-icon-only">
+                                                    <span class="btn-inner--icon">
+                                                        <svg class="bi bi-search" width="1em" height="1em"
+                                                             viewBox="0 0 16 16" fill="currentColor"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                                                            <path fill-rule="evenodd"
+                                                                  d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                                                        </svg>
+                                                    </span>
+                                            </button>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="list-group"
+                                         style="overflow:scroll; max-height: 400px;min-height: 200px;">
+
+                                        <div class="list-group-item">
+                                            <div class="row flex-column flex-md-row align-items-center">
+                                                <div class="col-auto">
+                                                    <!-- Avatar -->
+
+                                                    <a href="#" class="avatar rounded-circle">
+                                                        <img alt="Image placeholder" src="" class="">
+
+                                                    </a>
+                                                </div>
+                                                <div class="col ml-md-n2 text-center text-md-left">
+                                                    <a href="#!" class="h6 text-sm mb-0">John Sullivan</a>
+                                                </div>
+                                                <hr class="divider divider-fade my-3 d-md-none"/>
+                                                <div
+                                                        class="col-12 col-md-auto d-flex justify-content-between align-items-center">
+                                                    <button type="button" class="btn btn-sm btn-secondary">
+                                                        add
+                                                    </button>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="row flex-column flex-md-row align-items-center">
+                                                <div class="col-auto">
+                                                    <!-- Avatar -->
+
+                                                    <a href="#" class="avatar rounded-circle">
+                                                        <img alt="Image placeholder" src="" class="">
+
+                                                    </a>
+                                                </div>
+                                                <div class="col ml-md-n2 text-center text-md-left">
+                                                    <a href="#!" class="h6 text-sm mb-0">John Sullivan</a>
+                                                </div>
+                                                <hr class="divider divider-fade my-3 d-md-none"/>
+                                                <div
+                                                        class="col-12 col-md-auto d-flex justify-content-between align-items-center">
+                                                    <button type="button" class="btn btn-sm btn-secondary">
+                                                        add
+                                                    </button>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- add window Modal -->
+                    <div class="modal fade" id="modal-addwindow" tabindex="-1" role="dialog"
+                         aria-labelledby="modal-addwindow" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="modal-title d-flex align-items-center" id="modal-title-addwindow">
+                                        <div>
+                                            <div
+                                                    class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
+                                                <svg class="bi bi-window" width="1em" height="1em"
+                                                     viewBox="0 0 16 16" fill="currentColor"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                          d="M14 2H2a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
+                                                    <path fill-rule="evenodd" d="M15 6H1V5h14v1z"/>
+                                                    <path
+                                                            d="M3 3.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1.5 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm1.5 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0">add window</h6>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="overflow:auto;max-height:600px;min-height:400px;">
+                                    <div id="modal-friend-Box" class="list-group">
+                                        <!-- 此处显示所有好友 -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div id="friendBox" class="row-auto list-group mt-5 boerder-shadow soops-shadow"
+                 style="overflow:auto;height:550px;">
+
+            </div>
+        </div>
+        <!-- /第一个col -->
+
+        <!-- 第二个col -->
+        <div class=" col-sm-12 col-md-9 col-lg-9 col-xl-9 ">
+            <!-- 我的信息 -->
+            <div id="Myinfo" class="row">
+                <div class="col mt-5">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="avatar rounded-circle"
+                                     src="http://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20181226/97d5877e0ac1445980e755225514efc5.jpeg"
+                                     alt="alt">
+                            </a>
+                        </div>
+                        <div id="MyName" class="row username-style ml-4">MotherFucker</div>
+                        <div class="badge badge-success status ">
+                            Online
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mt-5 mr-10 ">
+                    <div id="alert-line" class="alert alert-dismissible fade show shadow-lg" role="alert"
+                         style="display:none;">
+                        <strong>LB </strong>
+                        <span>is</span>
+                        <span class="badge">Online</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                </div>
+                <div class="col-2 mt-5">
+                    <button type="button" class="btn btn-sm btn-animated  btn-animated-y btn-soops" data-toggle="modal"
+                            data-target="#modal-change-userinfo">
+                        <span class="btn-inner--visible ">
+                                <svg class="bi bi-layers-fill svg-soops-exc" width="1em" height="1em"
+                                     viewBox="0 0 16 16"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M7.765 1.559a.5.5 0 0 1 .47 0l7.5 4a.5.5 0 0 1 0 .882l-7.5 4a.5.5 0 0 1-.47 0l-7.5-4a.5.5 0 0 1 0-.882l7.5-4z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M2.125 8.567l-1.86.992a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882l-1.86-.992-5.17 2.756a1.5 1.5 0 0 1-1.41 0l.418-.785-.419.785-5.169-2.756z"/>
+                                </svg>
+                            </span>
+                        <span class="btn-inner--hidden text-sm">More</span>
+                    </button>
+
+                    <button type="button" class="btn btn-sm btn-animated  btn-animated-y btn-soops">
+                        <svg class="bi bi-power svg-soops" width="1em" height="1em" viewBox="0 0 16 16"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+                            <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+                        </svg>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-change-userinfo" tabindex="-1" role="dialog"
+                         aria-labelledby="modal-change-userinfo" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <form>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="modal-title d-flex align-items-center"
+                                             id="modal-title-change-userinfo">
+                                            <div>
+                                                <div
+                                                        class="icon icon-sm icon-shape icon-info rounded-circle shadow mr-3">
+                                                    <svg class="bi bi-person" width="1em" height="1em"
+                                                         viewBox="0 0 16 16" fill="currentColor"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                              d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0">Personal Info</h6>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">New username</label>
+                                                    <input class="form-control" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">Old password</label>
+                                                    <input class="form-control" type="password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">New password</label>
+                                                    <input class="form-control" type="password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">年</label>
+                                                    <input class="form-control" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">月</label>
+                                                    <input class="form-control" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">日</label>
+                                                    <input class="form-control" type="text">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="px-3 pt-4 mt-4 delimiter-top text-center">
+                                            <p class="text-muted text-sm">修改前请再三确认</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-secondary"
+                                                data-dismiss="modal">Change
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 每个个好友一个-->
+            <!-- 聊天框本框 -->
+            <div id="messageBox" class="row-auto mt-5 bg-white border-more2 boerder-shadow soops-shadow"
+                 style="overflow: auto; height:500px;width: 96%;display:none;">
+
+            </div>
+            <!-- /聊天框本框 -->
+
+            <!-- 发送区域 -->
+            <div id="input-container" class="row mt-5 " style="height:7%;position: relative;display:none;">
+                <!-- 发送框 -->
+                <div class="col-sm-8 col-md-8 col-lg-10 form-group soops-shadow">
+                    <input id="message-toSend" class="form-control" placeholder="Type to send"
+                           style="height:50px; font-size: 16px;border:0px;outline:none;border-radius: 5px;"/>
+                </div>
+                <!-- /发送框 -->
+
+                <!-- 发送button和文件button -->
+                <div class="col-sm-4 col-md-4 col-lg-2">
+                    <button onclick="sendFile()" type="button" class="btn btn-secondary rounded-circle btn-icon-only">
+                            <span class="btn-inner--icon">
+                                <svg class="bi bi-file-earmark-plus" width="1em" height="1em" viewBox="0 0 16 16"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                            d="M9 1H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5v-1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h5v2.5A1.5 1.5 0 0 0 10.5 6H13v2h1V6L9 1z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M13.5 10a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13v-1.5a.5.5 0 0 1 .5-.5z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M13 12.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+                                </svg>
+                            </span>
+                    </button>
+                    <button type="button" class="btn btn-success rounded-circle btn-icon-only" onclick="sendText()">
+                            <span class="btn-inner--icon">
+                                <svg class="bi bi-arrow-90deg-up" width="1.3em" height="1.3em" viewBox="0 0 16 16"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M2.646 6.854a.5.5 0 0 0 .708 0L6 4.207l2.646 2.647a.5.5 0 1 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M6 3.5a.5.5 0 0 0-.5.5v6.5A2.5 2.5 0 0 0 8 13h5.5a.5.5 0 0 0 0-1H8a1.5 1.5 0 0 1-1.5-1.5V4a.5.5 0 0 0-.5-.5z"/>
+                                </svg>
+                            </span>
+                    </button>
+                </div>
+                <!-- /发送button和文件button -->
+            </div>
+            <!-- /发送区域 -->
+        </div>
+        <!-- /第二个col -->
+
+
+    </div>
+
+</div>
+
+<!-- 气泡模版 -->
+<div id="buble-template" style="display:none">
+    <div class="message-friend">
+        <p class="user-name-l">Stars</p>
+        <i><img src="http://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20181226/97d5877e0ac1445980e755225514efc5.jpeg"
+                alt="alt"></i>
+        <span>我来了</span>
+    </div>
+</div>
+<!-- /气泡模版 -->
+
+<!-- 好友添加聊天框模版 -->
+<div id="addWindowtemplate" style="display:none">
+    <div class="list-group-item">
+        <div class="row flex-column flex-md-row align-items-center">
+            <div id="addW-avatar" class="col-auto">
+                <!-- Avatar -->
+                <a href="#" class="avatar rounded-circle">
+                    <img alt="Image placeholder" src="" class="">
+                </a>
+            </div>
+            <div id="addW-info" class="col ml-md-n2 text-center text-md-left">
+                <a href="" class="h6 text-sm mb-0">John Sullivan</a>
+                <div>
+                    <span class="text-danger">●</span>
+                    <small>Offline</small>
+                </div>
+            </div>
+            <hr class="divider divider-fade my-3 d-md-none"/>
+            <div class="col-12 col-md-auto d-flex justify-content-between align-items-center">
+                <button onClick="addWindow(this)" type="button" class="btn btn-sm btn-secondary">
+                    <svg class="bi bi-textarea-t" width="1.4em" height="1.4em"
+                         viewBox="0 0 16 16" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M14 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                        <path fill-rule="evenodd"
+                              d="M1.5 2.5A1.5 1.5 0 0 1 3 1h10a1.5 1.5 0 0 1 1.5 1.5v4h-1v-4A.5.5 0 0 0 13 2H3a.5.5 0 0 0-.5.5v4h-1v-4zm1 7v4a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5v-4h1v4A1.5 1.5 0 0 1 13 15H3a1.5 1.5 0 0 1-1.5-1.5v-4h1z"/>
+                        <path
+                                d="M11.434 4H4.566L4.5 5.994h.386c.21-1.252.612-1.446 2.173-1.495l.343-.011v6.343c0 .537-.116.665-1.049.748V12h3.294v-.421c-.938-.083-1.054-.21-1.054-.748V4.488l.348.01c1.56.05 1.963.244 2.173 1.496h.386L11.434 4z"/>
+                    </svg>
+                </button>
+                <button onClick="deleteFriend(this)" class="ml-3 btn btn-sm btn-danger">
+                    <svg class="bi bi-trash" width="1em" height="1em"
+                         viewBox="0 0 16 16" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /好友添加聊天框模版 -->
+
+<!-- 左边好友框选项模版 -->
+<div id="leftWindowtemplate" style="display:none">
+    <div id="friendItem" class="list-group-item">
+        <div class="row align-items-center">
+            <div class="col">
+                <!-- Avatar -->
+                <span class="avatar rounded-circle">
+                        <img alt="Image placeholder"
+                             src="http://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20181226/97d5877e0ac1445980e755225514efc5.jpeg"
+                             class="">
+                    </span>
+            </div>
+            <div class="col ml-n2">
+                <a onClick="switchWindow(this)" class="d-block h6 mb-0">John Sullivan</a>
+                <div>
+                    <span class="text-sm text-danger">●</span>
+                    <small>Offline</small>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button onClick="deleteWindow(this)" type="button" class="close btn-sm">
+                    <svg class="bi bi-x" width="1em" height="1em" viewBox="0 0 16 16" fill="black"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+                        <path fill-rule="evenodd"
+                              d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+                    </svg>
+                </button>
+            </div>
+            <span class="badge badge-pill badge-light">0</span>
+        </div>
+    </div>
+</div>
+<!-- /左边好友框选项模版 -->
+
+
+<!-- 聊天框本框 模版 -->
+<div id="chatBoxtemplate" style="display:none">
+</div>
+<!-- /聊天框本框 模版-->
+
+
+<script src="../js/chatroom.js"></script>
+
+</body>

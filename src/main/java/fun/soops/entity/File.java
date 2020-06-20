@@ -7,7 +7,7 @@ package fun.soops.entity;
 
 public class File {
     private String id; //uuid
-    private String realName; //123.jpg
+    private String realName; //123.jpg  //TODO 已经改为文件路径，请进行更改
     private String type; // jpg jpeg png 等
 
     //TODO

@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.UUID;
 
 @Service("fileService")
@@ -39,5 +42,25 @@ public class FileServiceImpl implements FileService {
     }
     //TODO 文件的存删
 
+    public String saveFile(String base64) throws IOException {
+
+        byte[] b = base64.getBytes();
+
+        String imgName = UUID.randomUUID().toString().replace("-", "");
+
+        String imgPath = "/Users/stars/IdeaProjects/SoopsChatTest/src/main/webapp/upload/" + imgName + ".bin";
+
+        OutputStream out = new FileOutputStream(imgPath);
+        out.write(b);
+        out.flush();
+        out.close();
+
+        fileDAO.saveFile(new File(imgName, imgPath, "image"));
+
+        return imgName;
+
+
+        //session.sendMessage(new TextMessage(msg));
+    }
 
 }

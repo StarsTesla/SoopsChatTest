@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/base64.js"></script>
+</head>
+<body>
+
+<div>
+    <input id="msgBox" type="text">
+    <button onClick="sendText()">Send Text</button>
+    <input type="file" id="file" value="" onchange="imgss(event)"/>
+    <img id="imgs"/>
+</div>
+<script>
+
+    url = "ws://localhost:8080/chat"
+    ws = new WebSocket(url);
+
+    ws.onopen = function () {
+        console.log("open");
+    }
+
+    ws.onclose = function () {
+        console.log("close");
+    }
+
+    ws.onmessage = function (e) {
+        // console.log(typeof e.data);
+        var respond = JSON.parse(e.data);
+        console.log(e.data);
+
+        // var templ = $('#chatTemplate').html();
+        // var div = $('<div></div>');
+        // div.html(templ);
+        // div.find('.chat-name').text(respond.fromUser);
+        // div.find('.chat-timestamp').text(new Date(respond.createdOn).toLocaleString());
+        // div.find('.chat-message').text(respond.content);
+        // var room = $('#chatBox');
+        // room.append(div);
+        // room.scrollTop(room.prop('scrollHeight') - room.height());
+        // console.log(raw);
+    }
+
+
+    //时间模版
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "H+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+    var friend = "LB"; //测试好友
+
+    function send(base64) {
+        // var content = $("#msgBox").val();
+        var now = new Date().Format('yyyy-MM-dd HH:mm:ss');
+        //console.log( typeof base64);
+        var message = {
+            'content': base64,
+            'fromUser': '',
+            'toUser': friend,
+            'createdOn': now,
+            'type': 'image'
+        }
+        //console.log(message);
+
+        message = JSON.stringify(message);
+
+        //  console.log(typeof message);
+        ws.send(message);
+
+        //$("#msgBox").val("");
+    }
+
+    function sendText() {
+        var content = $("#msgBox").val();
+        var now = new Date().Format('yyyy-MM-dd HH:mm:ss');
+
+        var message = {
+            'content': content,
+            'fromUser': '',
+            'toUser': friend,
+            'createdOn': now,
+            'type': 'text'
+        }
+
+        message = JSON.stringify(message);
+
+        console.log(typeof message);
+        ws.send(message);
+
+        $("#msgBox").val("");
+    }
+
+
+</script>
+
+</body>
+</html>
