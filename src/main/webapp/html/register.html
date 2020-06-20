@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<link rel="stylesheet" href="/css/register.css">
+<link rel="stylesheet" href="/css/avatar.css">
+<body class="form-membership">
+<div class="form-wrapper">
+    <form method="post" action="/api/user/register">
+        <h5>Create account</h5>
+        <div class="uploadAvatar">
+            <a href="javascript:;" class="file">
+                <i><img src="/upload/defaultAvatar.svg" alt="" id="userImg"></i>
+                <input type="file" name="realName" id="realName" onchange="previewFile()"/>
+            </a>
+        </div>
+
+        <div class="yesuser">
+            <span class="spanContent">用户可用</span>
+        </div>
+
+        <div class="form-group input-group-lg isemty">
+            <input type="text" name="username" class="username form-control" placeholder="Username" minlength="1"
+                   maxlength="50"/>
+        </div>
+
+        <div class="form-group input-group-lg">
+            <input type="password" class="password form-control" name="password" placeholder="Password" minlength="6"
+                   maxlength="20"/>
+        </div>
+
+        <div class="form-group input-group-lg ">
+            <input type="submit" value="Register" class="submitBtn btn btn-primary btn-lg btn-block"/>
+        </div>
+        <div>
+            <hr>
+            <a href="/html/login.html">Already have an account?</a>
+            <a href="login" class="btn btn-outline-light btn-sm">Sign in!</a>
+            <hr>
+        </div>
+
+    </form>
+    <!-- <button class="test">test</button> -->
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    var spanContent = document.querySelector(".spanContent");
+    var username = document.querySelector(".username");
+    var submitBtn = document.querySelector(".submitBtn");
+    var yesuser = document.querySelector(".yesuser");
+    var password = document.querySelector(".password");
+
+    username.addEventListener("focus", function () {
+        console.log(password.value.length);
+
+        if (this.value != "" && password.value.length != 0) {
+            submitBtn.style.background = "#3db16b";
+            submitBtn.style.border = "#3db16b";
+            submitBtn.disabled = false;
+        } else {
+            console.log(111);
+            submitBtn.disabled = true;
+            submitBtn.style.background = "gray";
+            submitBtn.style.border = "gray";
+        }
+        this.style.border = "1px solid #28a745";
+    })
+
+    password.addEventListener("focus", function () {
+        this.style.border = "1px solid #28a745";
+    })
+    password.addEventListener("blur", function () {
+        this.style.border = "2px solid #ced4da";
+        console.log(password.value.length);
+
+        if (password.value.length > 0) {
+            submitBtn.style.background = "#3db16b";
+            submitBtn.style.border = "#3db16b";
+            submitBtn.disabled = false;
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.style.background = "gray";
+            submitBtn.style.border = "gray";
+        }
+    })
+
+    function timer() {
+        setTimeout(function () {
+
+            yesuser.style.display = "none";
+        }, 2000);
+    }
+
+    //判断用户是否存在
+    username.addEventListener("blur", function () {
+        this.style.border = "2px solid #ced4da";
+        var username = $(".username").val();
+        if (username != "") {
+            if (password.value.length != 0) {
+                submitBtn.disabled = true;
+                submitBtn.style.background = "gray";
+                submitBtn.style.border = "gray";
+            } else {
+                submitBtn.style.background = "#3db16b";
+                submitBtn.style.border = "#3db16b";
+                submitBtn.disabled = false;
+            }
+            $.ajax({
+                url: "http://localhost:8080/api/user/isUserName",
+                data: {"username": username},
+                type: "POST",
+                success: function (data) {
+                    if (data == "ok") {
+                        spanContent.innerHTML = "用户名可用";
+                        spanContent.style.color = "green";
+                        yesuser.style.display = "block";
+                        timer();
+                        //判断输入框为空时不能提交表单
+                        //TODO
+                    } else {
+                        spanContent.innerHTML = "用户名已存在";
+                        spanContent.style.color = "red";
+                        yesuser.style.display = "block";
+                        timer();
+                    }
+                }
+            })
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.style.background = "gray";
+            submitBtn.style.border = "gray";
+            spanContent.innerHTML = "不能为空";
+            spanContent.style.color = "black";
+            yesuser.style.display = "block";
+            timer();
+        }
+    })
+
+    var userImg = document.querySelector("#userImg");
+    var realName = document.querySelector("#realName");
+
+    function previewFile() {
+        var userImg = document.querySelector("#userImg");
+        var realName = document.querySelector('#realName[type=file]').files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            userImg.src = reader.result;
+        }
+
+        if (realName) {
+            reader.readAsDataURL(realName);
+        } else {
+            userImg.src = "";
+        }
+    }
+</script>
+</body>
+</html>

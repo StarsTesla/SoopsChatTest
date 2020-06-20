@@ -56,4 +56,12 @@
     </select>
     <!-- 通过用户名来获取用户-->
 
+
+    <!--通过用户名查询用户(模糊查询)-->
+    <select id="searchUserByUsername" resultMap="user_query">
+       select t_user.id, t_user.username, t_user.password, t_user.birth,
+                t_file.id avatar_id, t_file.realName, t_file.type
+        from t_user join t_file on t_file.id = t_user.avatar
+        where t_user.username like concat('%',#{username},'%')
+    </select>
 </mapper>

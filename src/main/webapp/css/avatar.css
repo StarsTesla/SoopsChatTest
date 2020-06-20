@@ -1,0 +1,116 @@
+/* .uploadAvatar{
+    width: 88px;
+    height: 88px;
+    position: relative;
+}
+
+.file {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background: rgb(230, 230, 230);
+    box-shadow: 0 0 3px 3px rgba(219, 219, 219, 0.493);
+    border-radius: 50%;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+    position: absolute;
+    top: -20px;
+    left: 125px;
+}
+
+.file img{
+    position: absolute;
+    top: 10px;
+    left: 11px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #b6b6b6;
+    color: #aaaaaa;
+    text-decoration: none;
+} */
+
+.file {
+    width: 88px;
+    height: 88px;
+    position: relative;
+    display: inline-block;
+    background: #e9e9e9;
+    box-shadow: 0 0 3px 3px rgba(219, 219, 219, 0.493);
+    border-radius: 50%;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #b4b4b4;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+}
+
+.file img {
+    position: relative;
+    top: 9px;
+}
+
+.file:hover {
+    background: #adadad81;
+    color: #999999;
+    text-decoration: none;
+}
+
+.yesuser {
+    width: 100px;
+    height: 25px;
+    border: 1px solid rgba(184, 184, 184, 0.1);
+    box-shadow: 0 0 3px 3px rgba(219, 219, 219, 0.3);
+    background-color: white;
+    color: rgba(255, 0, 0, 0.486);
+    position: absolute;
+    top: 43%;
+    left: 55%;
+    display: none;
+}
+
+.uploadAvatar {
+    position: relative;
+    bottom: 10px;
+}
+
+.submitBtn {
+    background: #3db16b;
+    border-color: #3db16b;
+    width: 100%;
+    height: auto;
+    -webkit-box-pack: center;
+    border-radius: 3px;
+    color: white;
+    font-size: 24px;
+}
+
+#userImg {
+    width: 88px;
+    height: 88px;
+    position: relative;
+    top: -6px;
+    left: -11px;
+}

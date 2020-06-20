@@ -24,19 +24,23 @@ public class FileServiceImpl implements FileService {
     public File addAvatar(@Param("realName") String realName) {
         //生成uuid(唯一标识)
         String uuid = UUID.randomUUID().toString().replace("-", "");
+        //获取文件类型（后缀）
+        String type = FilenameUtils.getExtension(realName);
         //将realName以"\\\\"分切，放进temp[]
         String temp[] = realName.split("\\\\");
         //获取文件名称(前缀+后缀)
-        String fileName = temp[temp.length - 1];
-        //将文件前缀名称拼接uuid，生成唯一文件标识名称
-        String fileId = uuid + fileName.replace(".", "");
-        //获取文件类型（后缀）
-        String type = FilenameUtils.getExtension(realName);
+//        String fileName = temp[temp.length - 1];
+//        //将文件前缀名称拼接uuid，生成唯一文件标识名称
+//        String fileId = uuid + fileName.replace(".", "");
+        String fileId = uuid;
+        //生成唯一realName名称
+        String uniqueFilename = uuid + "." + type;
         //生成文件对象
-        File file = new File(fileId, fileName, type);
+        File file = new File(fileId, uniqueFilename, type);
         fileDAO.addAvatar(file);
         return file;
     }
+
     //TODO 文件的存删
 
 

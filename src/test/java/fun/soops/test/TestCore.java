@@ -105,11 +105,11 @@ public class TestCore {
         System.out.println(user.getAvatar());
     }
 
-//    @Test
-//    public void addFile(){
-//        fileService.addAvatar("002.jpg");
-//        System.out.println("ok");
-//    }
+    @Test
+    public void addFile() {
+        fileService.addAvatar("002.jpg");
+        System.out.println("ok");
+    }
 
     @Test
     public void insertMessage() {
@@ -131,5 +131,12 @@ public class TestCore {
         }
     }
 
-
+    //    模糊查询测试
+    @Test
+    public void searchUserByUsername() {
+        List<User> user = userService.searchUserByUsername("lb");
+        for (User searchUser : user) {
+            System.out.println(searchUser);
+        }
+    }
 }

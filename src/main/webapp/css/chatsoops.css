@@ -1,0 +1,240 @@
+html.body {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.username-style {
+    margin-left: 0 !important;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.status {
+    position: relative;
+    top: 30px;
+    left: -84px;
+}
+
+.border-more {
+    border: 1px solid rgb(112, 112, 112) !important;
+    border-radius: 5px !important;
+    opacity: 0.6;
+}
+
+.border-more {
+    border: 1px solid rgba(197, 197, 197, 0.658) !important;
+    border-radius: 5px !important;
+}
+
+.boerder-shadow {
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px 1px #e2eafc;
+}
+
+.message-friend {
+    margin-top: 45px;
+    margin-left: 20px;
+    position: relative;
+}
+
+.message-friend .avatar-user {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: absolute;
+
+}
+
+.message-friend span {
+    display: inline-block;
+    min-width: 50px;
+    max-width: 500px;
+    min-height: 32px;
+    height: auto;
+    padding: 5px;
+    text-align: left;
+    color: black;
+    position: relative;
+    left: 60px;
+    top: 17px;
+
+    border-radius: 5px;
+    background-color: rgb(218, 218, 218);
+}
+
+.user-name-l {
+    display: inline-block;
+    position: absolute;
+    left: 62px;
+    top: -10px;
+    font-size: 16px;
+
+}
+
+.message-me {
+    margin-top: 45px;
+    margin-left: 20px;
+    margin-bottom: 50px;
+    position: relative;
+
+}
+
+.message-me .avatar-user {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    position: absolute;
+    left: 75px;
+    top: 5px;
+}
+
+.message-me span {
+    display: inline-block;
+    min-width: 50px;
+    max-width: 500px;
+    min-height: 32px;
+    height: auto;
+    padding: 5px;
+    text-align: right;
+    color: black;
+    position: relative;
+    left: 6px;
+    top: 22px;
+    border-radius: 5px;
+    background-color: yellowgreen;
+    overflow-wrap: break-word !important;
+}
+
+.user-name-r {
+
+    display: inline-block;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    font-size: 16px;
+}
+
+.btn-soops {
+    border: 1px solid rgba(0, 0, 0, 0.099) !important;
+}
+
+.svg-soops {
+    width: 16px;
+    height: 16px;
+    color: red;
+}
+
+.svg-soops-exc {
+    width: 16px !important;
+    height: 16px !important;
+
+}
+
+.col-2-soops {
+
+    right: 16px;
+}
+
+.soops-shadow {
+    box-shadow: 0 0 2px 2px rgba(228, 228, 228, 0.897);
+}
+
+.sendImg-friend {
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 300px;
+    width: auto;
+    height: auto;
+
+}
+
+.sendImg-me {
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 300px;
+    width: auto;
+    height: auto;
+    position: relative;
+    right: 243px;
+    top: -16px;
+    border: 3px solid yellowgreen;
+    border-radius: 5px;
+
+
+}
+
+.shelt {
+    display: none;
+    background-color: gray;
+    margin: 0 auto;
+    position: absolute;
+    top: 17%;
+    left: 20%;
+    box-shadow: 0 0 600px 600px rgba(73, 73, 73, 0.5);
+}
+
+.chatHat {
+    width: 96%;
+    height: 50px;
+    background-color: #e5e9f2;
+    border-bottom: 2px solid white;
+    position: relative;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.chatHat span {
+    position: absolute;
+    top: 25%;
+    left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.friendHat {
+    width: 100%;
+    height: 50px;
+    background-color: #e5e9f2;
+    margin-top: 4.5rem !important;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    position: relative;
+}
+
+.friendHat span {
+    position: absolute;
+    top: 25%;
+    left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+
+
+}
+
+.onlineRemind {
+    width: 45%;
+    height: 80%;
+    max-width: 55%;
+    min-height: 80%;
+    max-height: 100%;
+    background-color: #e5e9f2;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 46%;
+    display: none;
+    transition: all .2s;
+
+}
+
+.onlineRemind span {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    margin: 0 auto;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+
+}
